@@ -245,15 +245,9 @@ async function updateWeather() {
       temperature + " °C · " +
       (descriptions[code] || "Tiempo actual");
 
-  } catch (error) {
+  } catch
 
-    document.getElementById("weather").textContent =
-      "Tiempo no disponible";
-
-  }
-
-}
-
+    document.getElementById("weather").
 updateWeather();
 
 setInterval(updateWeather, 600000);
