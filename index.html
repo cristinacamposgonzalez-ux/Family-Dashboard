@@ -5,252 +5,404 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Family Dash">
-
-<title>Family Dash</title>
+<meta name="apple-mobile-web-app-title" content="Family Dashboard">
+<title>Family Dashboard</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+html,body{
+margin:0;
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:#101116;
+color:white;
 }
 
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #101116;
-  color: white;
+.slide{
+display:none;
+width:100%;
+height:100%;
+padding:7vh 7vw;
+align-items:center;
+justify-content:center;
+text-align:center;
 }
 
-.slide {
-  display: none;
-  width: 100%;
-  height: 100%;
-  padding: 7vh 7vw;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.slide.active{display:flex}
+
+.content{
+width:100%;
+max-width:1200px;
 }
 
-.slide.active {
-  display: flex;
+.emoji{
+font-size:90px;
+margin-bottom:15px;
 }
 
-.content {
-  width: 100%;
-  max-width: 1200px;
+h1{
+font-size:clamp(45px,8vw,100px);
+margin:10px 0 25px;
 }
 
-.emoji {
-  font-size: 90px;
-  margin-bottom: 20px;
+p{
+font-size:clamp(25px,4vw,50px);
+margin:15px 0;
 }
 
-h1 {
-  font-size: clamp(45px, 8vw, 100px);
-  margin: 10px 0 25px;
+.small{
+font-size:22px;
+opacity:.65;
 }
 
-p {
-  font-size: clamp(25px, 4vw, 50px);
-  margin: 15px 0;
+.cards{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
 }
 
-.small {
-  font-size: 22px;
-  opacity: 0.65;
+.card{
+background:rgba(255,255,255,.12);
+border-radius:30px;
+padding:30px 40px;
+margin:12px auto;
+font-size:30px;
+max-width:850px;
 }
 
-.cards {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
+.clock{
+font-size:clamp(90px,17vw,220px);
+font-weight:700;
+line-height:1;
 }
 
-.card {
-  background: rgba(255,255,255,0.12);
-  border-radius: 30px;
-  padding: 35px 45px;
-  min-width: 250px;
-  font-size: 32px;
-}
-
-.clock {
-  font-size: clamp(90px, 17vw, 220px);
-  font-weight: 700;
-  line-height: 1;
-}
-
-.date {
-  font-size: clamp(28px, 4vw, 55px);
-  margin-top: 35px;
+.date{
+font-size:clamp(28px,4vw,55px);
+margin-top:35px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- WEATHER -->
+<!-- TIEMPO -->
 <section class="slide active">
-  <div class="content">
-    <div class="emoji">🌤️</div>
-    <h1>Doha</h1>
-    <p id="weather">Cargando tiempo…</p>
-  </div>
+<div class="content">
+<div class="emoji">🌤️</div>
+<h1>Doha</h1>
+<p id="weather">Cargando tiempo…</p>
+</div>
 </section>
 
-<!-- CALENDAR -->
+<!-- CALENDARIO FAMILY -->
 <section class="slide">
-  <div class="content">
-    <div class="emoji">📅</div>
-    <h1>Calendario</h1>
-    <p>Hoy</p>
-    <p class="small">
-      Aquí añadiremos tu calendario familiar de Apple.
-    </p>
-  </div>
+<div class="content">
+<div class="emoji">📅</div>
+<h1>Family</h1>
+<div id="calendarEvents">
+<p>Cargando calendario…</p>
+</div>
+</div>
 </section>
 
-<!-- FAMILY -->
+<!-- FAMILIA -->
 <section class="slide">
-  <div class="content">
-    <div class="emoji">👨‍👩‍👧‍👧</div>
-    <h1>Familia</h1>
+<div class="content">
+<div class="emoji">👨‍👩‍👧‍👧</div>
+<h1>Familia</h1>
 
-    <div class="cards">
+<div class="cards">
 
-      <div class="card">
-        👧 Noa
-        <br>
-        <span class="small">Colegio · Gimnasia</span>
-      </div>
+<div class="card">
+👧 Noa
+<br>
+<span class="small">Colegio · Gimnasia</span>
+</div>
 
-      <div class="card">
-        👧 Alba
-        <br>
-        <span class="small">Colegio · Actividades</span>
-      </div>
+<div class="card">
+👧 Alba
+<br>
+<span class="small">Colegio · Actividades</span>
+</div>
 
-      <div class="card">
-        🏠 Casa
-        <br>
-        <span class="small">Tareas · Recordatorios</span>
-      </div>
+<div class="card">
+🏠 Casa
+<br>
+<span class="small">Tareas · Recordatorios</span>
+</div>
 
-    </div>
-  </div>
+</div>
+</div>
 </section>
 
-<!-- CLOCK -->
+<!-- RELOJ -->
 <section class="slide">
-  <div class="content">
-    <div class="clock" id="clock"></div>
-    <div class="date" id="date"></div>
-  </div>
+<div class="content">
+<div class="clock" id="clock"></div>
+<div class="date" id="date"></div>
+</div>
 </section>
 
 <script>
 
-const slides = document.querySelectorAll(".slide");
+const slides=document.querySelectorAll(".slide");
+let current=0;
 
-let current = 0;
-
-function nextSlide() {
-
-  slides[current].classList.remove("active");
-
-  current++;
-
-  if (current >= slides.length) {
-    current = 0;
-  }
-
-  slides[current].classList.add("active");
+function nextSlide(){
+slides[current].classList.remove("active");
+current=(current+1)%slides.length;
+slides[current].classList.add("active");
 }
 
-/* Cambia de pantalla cada 12 segundos */
-
-setInterval(nextSlide, 12000);
-
-
-/* También puedes tocar la pantalla para cambiar */
-
-document.body.addEventListener("click", nextSlide);
+setInterval(nextSlide,12000);
 
 
 /* RELOJ */
 
-function updateClock() {
+function updateClock(){
 
-  const now = new Date();
+const now=new Date();
 
-  document.getElementById("clock").textContent =
-    now.toLocaleTimeString("es-ES", {
-      hour: "2-digit",
-      minute: "2-digit"
-    });
+document.getElementById("clock").textContent=
+now.toLocaleTimeString("es-ES",{
+hour:"2-digit",
+minute:"2-digit"
+});
 
-  document.getElementById("date").textContent =
-    now.toLocaleDateString("es-ES", {
-      weekday: "long",
-      day: "numeric",
-      month: "long"
-    });
+document.getElementById("date").textContent=
+now.toLocaleDateString("es-ES",{
+weekday:"long",
+day:"numeric",
+month:"long"
+});
+
 }
 
 updateClock();
-
-setInterval(updateClock, 1000);
+setInterval(updateClock,1000);
 
 
 /* TIEMPO DE DOHA */
 
-async function updateWeather() {
+async function updateWeather(){
 
-  try {
+try{
 
-    const response = await fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=25.2854&longitude=51.5310&current=temperature_2m,weather_code&timezone=Asia%2FQatar"
-    );
+const response=await fetch(
+"https://api.open-meteo.com/v1/forecast?latitude=25.2854&longitude=51.5310&current=temperature_2m,weather_code&timezone=Asia%2FQatar"
+);
 
-    const data = await response.json();
+const data=await response.json();
 
-    const temperature =
-      Math.round(data.current.temperature_2m);
+const descriptions={
+0:"☀️ Despejado",
+1:"🌤️ Principalmente despejado",
+2:"⛅ Parcialmente nublado",
+3:"☁️ Nublado",
+45:"🌫️ Niebla",
+48:"🌫️ Niebla",
+51:"🌦️ Llovizna",
+61:"🌧️ Lluvia",
+63:"🌧️ Lluvia",
+80:"🌦️ Chubascos",
+81:"🌦️ Chubascos",
+95:"⛈️ Tormenta"
+};
 
-    const code =
-      data.current.weather_code;
+document.getElementById("weather").textContent=
+Math.round(data.current.temperature_2m)+" °C · "+
+(descriptions[data.current.weather_code]||"Tiempo actual");
 
-    const descriptions = {
+}catch(e){
 
-      0: "☀️ Despejado",
-      1: "🌤️ Principalmente despejado",
-      2: "⛅ Parcialmente nublado",
-      3: "☁️ Nublado",
-      45: "🌫️ Niebla",
-      48: "🌫️ Niebla",
-      51: "🌦️ Llovizna",
-      61: "🌧️ Lluvia",
-      63: "🌧️ Lluvia",
-      80: "🌦️ Chubascos",
-      81: "🌦️ Chubascos",
-      95: "⛈️ Tormenta"
+document.getElementById("weather").textContent=
+"Tiempo no disponible";
 
-    };
+}
 
-    document.getElementById("weather").textContent =
-      temperature + " °C · " +
-      (descriptions[code] || "Tiempo actual");
+}
 
-  } catch
-
-    document.getElementById("weather").
 updateWeather();
+setInterval(updateWeather,600000);
 
-setInterval(updateWeather, 600000);
+
+/* CALENDARIO APPLE FAMILY */
+
+const calendarURL=
+"webcal://p162-caldav.icloud.com/published/2/MjgzMjY2MzI3MjgzMjY2Mywee4RxVMexvjDhEFEQduqhFtFQ9L4gCp3VJAcIOoZp0V9FLi6UTe3-CmnhYnwSWLEN_RC_3V4hJzcSqle-lqg";
+
+
+function parseICS(text){
+
+const lines=text
+.replace(/\r?\n[ \t]/g,"")
+.split(/\r?\n/);
+
+const events=[];
+let event=null;
+
+for(const line of lines){
+
+if(line==="BEGIN:VEVENT"){
+event={};
+}
+
+else if(line==="END:VEVENT" && event){
+events.push(event);
+event=null;
+}
+
+else if(event){
+
+const match=line.match(/^([^:;]+)(?:;[^:]*)?:(.*)$/);
+
+if(match){
+event[match[1]]=match[2];
+}
+
+}
+
+}
+
+return events;
+
+}
+
+
+function parseDate(value){
+
+if(!value)return null;
+
+const clean=value.replace(/[^0-9TZ]/g,"");
+
+if(/^\d{8}$/.test(clean)){
+
+return new Date(
+Number(clean.slice(0,4)),
+Number(clean.slice(4,6))-1,
+Number(clean.slice(6,8))
+);
+
+}
+
+const year=Number(clean.slice(0,4));
+const month=Number(clean.slice(4,6))-1;
+const day=Number(clean.slice(6,8));
+
+const hour=Number(clean.slice(9,11))||0;
+const minute=Number(clean.slice(11,13))||0;
+
+return new Date(
+Date.UTC(year,month,day,hour,minute)
+);
+
+}
+
+
+async function updateCalendar(){
+
+const box=document.getElementById("calendarEvents");
+
+try{
+
+/*
+Apple utiliza webcal.
+El navegador necesita acceder mediante HTTPS.
+*/
+
+const httpsURL=
+calendarURL.replace(/^webcal:/,"https:");
+
+const proxy=
+"https://corsproxy.io/?url="+
+encodeURIComponent(httpsURL);
+
+const response=await fetch(proxy);
+
+const text=await response.text();
+
+const events=parseICS(text);
+
+const today=new Date();
+
+today.setHours(0,0,0,0);
+
+const nextWeek=new Date(today);
+
+nextWeek.setDate(nextWeek.getDate()+7);
+
+const upcoming=events
+.map(event=>({
+
+title:event.SUMMARY||"Evento",
+start:parseDate(event.DTSTART)
+
+}))
+.filter(event=>
+event.start &&
+event.start>=today &&
+event.start<nextWeek
+)
+.sort((a,b)=>a.start-b.start)
+.slice(0,6);
+
+
+if(upcoming.length===0){
+
+box.innerHTML=
+"<p>No hay eventos próximos</p>";
+
+return;
+
+}
+
+
+box.innerHTML=upcoming.map(event=>{
+
+const date=event.start.toLocaleDateString(
+"es-ES",
+{
+weekday:"short",
+day:"numeric",
+month:"short"
+}
+);
+
+const time=event.start.toLocaleTimeString(
+"es-ES",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+return `
+<div class="card">
+<strong>${date}</strong>
+<br>
+${time} · ${event.title}
+</div>
+`;
+
+}).join("");
+
+
+}catch(error){
+
+box.innerHTML=
+'<p class="small">No se pudo cargar el calendario.</p>';
+
+}
+
+}
+
+updateCalendar();
+
+setInterval(updateCalendar,300000);
 
 </script>
 
